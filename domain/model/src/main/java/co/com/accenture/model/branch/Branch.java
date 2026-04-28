@@ -13,7 +13,6 @@ import lombok.Setter;
 public class Branch {
 
     private String id;
-
     private String name;
 
 }

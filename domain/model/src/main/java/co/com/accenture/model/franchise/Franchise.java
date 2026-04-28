@@ -10,17 +10,5 @@ import lombok.Setter;
 public class Franchise {
 
     private String id;
-
     private String name;
-
-    public Franchise() {}
-
-    public Franchise(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Franchise(String name) {
-        this.name = name;
-    }
 }
