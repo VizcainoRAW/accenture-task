@@ -15,4 +15,6 @@ public interface BranchRepository {
     Mono<Void> deleteById(String id);
 
     Mono<Boolean> existsById(String id);
+
+    Flux<Branch> findAllByFranchiseId(String franchiseId);
 }
