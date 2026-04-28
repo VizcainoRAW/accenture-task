@@ -11,12 +11,14 @@ public interface ProductRepository {
 
     Flux<Product> findAllByBranchId(String branchId);
 
-    Mono<Branch> save(Product product);
+    Mono<Product> save(Product product);
 
     Mono<Void> deleteById(String id);
 
     Mono<Boolean> existsById(String id);
 
     Mono<Product> findById(String id);
+
+    Mono<Product> updateStock(String id, Integer stock);
 
 }
