@@ -14,5 +14,6 @@ public class Branch {
 
     private String id;
     private String name;
+    private String FranchiseId;
 
 }
