@@ -5,6 +5,7 @@ import co.com.accenture.model.exception.ResourceNotFoundException;
 import co.com.accenture.model.product.Product;
 import co.com.accenture.model.product.gateways.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
@@ -39,5 +40,13 @@ public class ProductUseCase {
                 .flatMap(existing -> productRepository.save(
                         existing.toBuilder().name(name).build()
                 ));
+    }
+
+    public Mono<Product> findById(String id) {
+        return productRepository.findById(id);
+    }
+
+    public Flux<Product> findAll() {
+        return productRepository.findAll();
     }
 }

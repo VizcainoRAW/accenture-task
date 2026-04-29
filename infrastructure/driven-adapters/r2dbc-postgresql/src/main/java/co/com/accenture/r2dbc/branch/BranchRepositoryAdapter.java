@@ -51,6 +51,9 @@ public class BranchRepositoryAdapter extends ReactiveAdapterOperations
 
     @Override
     public Mono<Boolean> existsById(String id) {
+        if (id == null) {
+            return Mono.just(false);
+        }
         return repository.existsById(UUID.fromString(id));
     }
 }
