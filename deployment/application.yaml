@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: franchise-api
+
+  r2dbc:
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:franchise_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:franchise_db}
+    user: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    io.r2dbc: DEBUG
+    org.springframework.data.r2dbc: DEBUG
