@@ -18,6 +18,7 @@ public class ProductRouterRest {
                         .POST("/", handler::create)
                         .GET("/", handler::findAll)
                         .DELETE("/{id}", handler::delete)
+                                .PATCH("/{id}/stock", handler::updateStock)
 //                        .GET("/{id}", handler::findById)
 //                        .PATCH("/{id}/name", handler::updateName)
 //                        .GET("/{id}/top-stock", handler::getTopStockByFranchise)

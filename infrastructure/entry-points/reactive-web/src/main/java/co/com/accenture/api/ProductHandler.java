@@ -2,6 +2,7 @@ package co.com.accenture.api;
 
 import co.com.accenture.api.dto.ProductRequestDTO;
 
+import co.com.accenture.api.dto.UpdateStock;
 import co.com.accenture.model.product.Product;
 import co.com.accenture.usecase.product.ProductUseCase;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,14 @@ public class ProductHandler {
         String id = request.pathVariable("id");
         return productUseCase.delete(id)
                 .then(ServerResponse.ok().build());
+    }
+
+    public Mono<ServerResponse> updateStock(ServerRequest request) {
+        String id = request.pathVariable("id");
+        return request.bodyToMono(UpdateStock.class)
+                .flatMap(updateStock -> productUseCase.updateStock(id, updateStock.stock()))
+                .map(mapper::toDTO)
+                .flatMap(dto -> ServerResponse.ok().bodyValue(dto));
     }
 
 }
