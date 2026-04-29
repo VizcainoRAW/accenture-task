@@ -1,10 +1,21 @@
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
 
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY . .
 
-VOLUME /tmp
-COPY *.jar task.jar
+RUN chmod +x gradlew
+RUN ./gradlew :app-service:bootJar -x test -x validateStructure
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+COPY --from=builder /app/applications/app-service/build/libs/task.jar task.jar
 
 ENV JAVA_OPTS=" -Xshareclasses:name=cacheapp,cacheDir=/cache,nonfatal -XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
-USER appuser
-ENTRYPOINT [ "/bin/sh", "-c", "/opt/java/openjdk/bin/java $JAVA_OPTS  -jar /task.jar" ]
+
+EXPOSE 8080
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar task.jar" ]
