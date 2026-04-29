@@ -14,11 +14,13 @@ public class BranchUseCase {
     private final BranchRepository branchRepository;
     private final FranchiseRepository franchiseRepository;
 
-    Flux<Branch> findAll(){
+
+
+    public Flux<Branch> findAll(){
         return branchRepository.findAll();
     }
 
-    Flux<Branch> findAllByFranchiseId(String franchiseId){
+    public Flux<Branch> findAllByFranchiseId(String franchiseId){
         return branchRepository.findAllByFranchiseId(franchiseId);
     }
 

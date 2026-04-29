@@ -8,16 +8,29 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Repository
 public class BranchRepositoryAdapter extends ReactiveAdapterOperations
                 <Branch,
                 BranchData,
-                String,
+                        UUID,
                 BranchReactiveRepository>
         implements BranchRepository {
 
     public BranchRepositoryAdapter(BranchReactiveRepository repository, ObjectMapper mapper) {
         super(repository, mapper, d -> mapper.mapBuilder(d, Branch.BranchBuilder.class).build());
+    }
+
+    @Override
+    public Mono<Branch> save(Branch branch) {
+        return repository.save(
+                BranchData.builder()
+                        .id(null)
+                        .name(branch.getName())
+                        .franchiseId(UUID.fromString(branch.getFranchiseId()))
+                        .build()
+        ).map(this::toEntity);
     }
 
     @Override
@@ -27,12 +40,17 @@ public class BranchRepositoryAdapter extends ReactiveAdapterOperations
     }
 
     @Override
+    public Mono<Branch> findById(String id) {
+        return repository.findById(UUID.fromString(id)).map(this::toEntity);
+    }
+
+    @Override
     public Mono<Void> deleteById(String id) {
-        return repository.deleteById(id);
+        return repository.deleteById(UUID.fromString(id));
     }
 
     @Override
     public Mono<Boolean> existsById(String id) {
-        return repository.existsById(id);
+        return repository.existsById(UUID.fromString(id));
     }
 }
