@@ -32,4 +32,11 @@ public class ProductHandler {
                 .flatMap(dto -> ServerResponse.status(201).bodyValue(dto));
     }
 
+
+    public Mono<ServerResponse> delete(ServerRequest request) {
+        String id = request.pathVariable("id");
+        return productUseCase.delete(id)
+                .then(ServerResponse.ok().build());
+    }
+
 }

@@ -17,6 +17,7 @@ public class ProductRouterRest {
                 .nest(path("/api/product"), builder -> builder
                         .POST("/", handler::create)
                         .GET("/", handler::findAll)
+                        .DELETE("/{id}", handler::delete)
 //                        .GET("/{id}", handler::findById)
 //                        .PATCH("/{id}/name", handler::updateName)
 //                        .GET("/{id}/top-stock", handler::getTopStockByFranchise)
