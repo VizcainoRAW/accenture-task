@@ -13,7 +13,14 @@ public class FranchiseRouterRest {
 
     @Bean
     public RouterFunction<ServerResponse> franchiseRoutes(FranchiseHandler handler) {
-        return route(GET("/api/franchise"), handler::findAll)
-                .andRoute(GET("/api/franchise/{id}"), handler::findById);
+        return route()
+                .nest(path("/api/franchise"), builder -> builder
+                        .POST("/", handler::create)
+                        .GET("/", handler::findAll)
+                        .GET("/{id}", handler::findById)
+//                        .PATCH("/{id}/name", handler::updateName)
+//                        .GET("/{id}/top-stock", handler::getTopStockByFranchise)
+                )
+                .build();
     }
 }

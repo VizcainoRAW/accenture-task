@@ -1,5 +1,6 @@
 package co.com.accenture.usecase.franchise;
 
+import co.com.accenture.model.exception.DomainException;
 import co.com.accenture.model.franchise.Franchise;
 import co.com.accenture.model.franchise.gateways.FranchiseRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,9 @@ public class FranchiseUseCase {
     }
 
     public Mono<Franchise> save(Franchise franchise) {
+        if (franchise.getName() == null || franchise.getName().isBlank()) {
+            return Mono.error(new DomainException("Franchise ID cannot be null"));
+        }
         return franchiseRepository.save(franchise);
     }
 
