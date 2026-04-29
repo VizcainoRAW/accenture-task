@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class BranchRepositoryAdapter extends ReactiveAdapterOperations
-        <Branch,
+                <Branch,
                 BranchData,
                 String,
                 BranchReactiveRepository>

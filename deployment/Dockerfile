@@ -15,7 +15,7 @@ WORKDIR /app
 
 COPY --from=builder /app/applications/app-service/build/libs/task.jar task.jar
 
-ENV JAVA_OPTS=" -Xshareclasses:name=cacheapp,cacheDir=/cache,nonfatal -XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
 
 EXPOSE 8080
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar task.jar" ]
