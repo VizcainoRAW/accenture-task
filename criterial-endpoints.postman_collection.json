@@ -133,8 +133,7 @@
             "exec": [
               "let response = pm.response.json();\r",
               "\r",
-              "// Guardar el id\r",
-              "pm.environment.set(\"productId\", response.id);"
+              "pm.collectionVariables.set(\"productId\", response.id);"
             ],
             "type": "text/javascript",
             "packages": {},
@@ -158,7 +157,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"name\":\"{{$randomProductName}}\",\r\n    \"stock\": {{$randomInt}},\r\n    \"branchId\":\"027fe65b-d6d4-401a-bec3-23e4f003cfb8\"\r\n}",
+          "raw": "{\r\n    \"name\":\"{{$randomProductName}}\",\r\n    \"stock\": {{$randomInt}},\r\n    \"branchId\":\"{{createdBranchId}}\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -234,6 +233,18 @@
   "variable": [
     {
       "key": "route",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "createdFranchiseId",
+      "value": ""
+    },
+    {
+      "key": "createdBranchId",
       "value": ""
     }
   ]
