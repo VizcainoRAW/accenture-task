@@ -96,6 +96,8 @@ Puedes importar la colección para probar los endpoints desde cualquiera de esta
 - Colección pública:  
   `https://www.postman.com/lunar-space-659938/accenture-task/collection/0uzo3ad/criterial-endpoints?action=share&source=copy-link&creator=47902613&tab=overview`
 
+![endpoint_test](docs/images/endpoint_test.png)
+
 ### Ejecución local
 
 1. Clona el repositorio.
@@ -126,6 +128,7 @@ Si deseas reconstruir sin caché (Recomendado):
 docker compose build --no-cache
 docker compose up
 ```
+![deploy](docs/images/deploy.png)
 
 Servicios levantados
 - PostgreSQL en el puerto 5432
