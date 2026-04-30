@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "2000f013-36cf-4b0b-a6b3-4fe8ec994d74",
+    "name": "criterial-endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47902613",
+    "_collection_link": "https://go.postman.co/collection/47902613-2000f013-36cf-4b0b-a6b3-4fe8ec994d74?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Franchise findAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{route}}/api/franchise/",
+          "host": [
+            "{{route}}"
+          ],
+          "path": [
+            "api",
+            "franchise",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "branch findAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/branch/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "branch",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "products findAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/product/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "product",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create franchise",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"{{$randomStreetName}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{route}}/api/franchise/",
+          "host": [
+            "{{route}}"
+          ],
+          "path": [
+            "api",
+            "franchise",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create branch",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{$randomStreetAddress}}\",\r\n    \"franchiseId\":\"1a1a11e9-6405-4ef3-946c-425f72d68a0c\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{route}}/api/branch/",
+          "host": [
+            "{{route}}"
+          ],
+          "path": [
+            "api",
+            "branch",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "// Guardar el id\r",
+              "pm.environment.set(\"productId\", response.id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{$randomProductName}}\",\r\n    \"stock\": {{$randomInt}},\r\n    \"branchId\":\"027fe65b-d6d4-401a-bec3-23e4f003cfb8\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{route}}/api/product/",
+          "host": [
+            "{{route}}"
+          ],
+          "path": [
+            "api",
+            "product",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update stock",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"stock\": {{$randomInt}}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{route}}/api/product/{{productId}}/stock",
+          "host": [
+            "{{route}}"
+          ],
+          "path": [
+            "api",
+            "product",
+            "{{productId}}",
+            "stock"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "top stock products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/product/top-stock/{{franchiseId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "product",
+            "top-stock",
+            "{{franchiseId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "route",
+      "value": ""
+    }
+  ]
+}
