@@ -48,4 +48,10 @@ public class ProductHandler {
                 .flatMap(dto -> ServerResponse.ok().bodyValue(dto));
     }
 
+    public Mono<ServerResponse> findTopStockProductByBranch(ServerRequest request) {
+        String franchiseId = request.pathVariable("franchiseId");
+        return ServerResponse.ok()
+                .body(productUseCase.findTopStockProductByBranch(franchiseId), Product.class);
+    }
+
 }

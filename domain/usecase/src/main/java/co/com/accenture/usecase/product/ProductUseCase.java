@@ -49,4 +49,8 @@ public class ProductUseCase {
     public Flux<Product> findAll() {
         return productRepository.findAll();
     }
+
+    public Flux<Product> findTopStockProductByBranch(String franchiseId) {
+        return productRepository.findTopStockProductByBranch(franchiseId);
+    }
 }

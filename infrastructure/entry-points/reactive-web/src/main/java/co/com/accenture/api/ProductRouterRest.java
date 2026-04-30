@@ -21,7 +21,7 @@ public class ProductRouterRest {
                                 .PATCH("/{id}/stock", handler::updateStock)
 //                        .GET("/{id}", handler::findById)
 //                        .PATCH("/{id}/name", handler::updateName)
-//                        .GET("/{id}/top-stock", handler::getTopStockByFranchise)
+                        .GET("/top-stock/{franchiseId}", handler::findTopStockProductByBranch)
                 )
                 .build();
     }

@@ -21,4 +21,6 @@ public interface ProductRepository {
 
     Mono<Product> updateStock(String id, Integer stock);
 
+    Flux<Product> findTopStockProductByBranch(String franchiseId);
+
 }

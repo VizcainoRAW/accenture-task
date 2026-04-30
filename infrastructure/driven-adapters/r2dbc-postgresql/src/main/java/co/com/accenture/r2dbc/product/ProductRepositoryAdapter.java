@@ -62,4 +62,10 @@ public class ProductRepositoryAdapter extends ReactiveAdapterOperations
                 ))
                 .map(this::toEntity);
     }
+
+    @Override
+    public Flux<Product> findTopStockProductByBranch(String franchiseId) {
+        return repository.findTopStockPerBranchByFranchiseId(UUID.fromString(franchiseId))
+                .map(this::toEntity);
+    }
 }
