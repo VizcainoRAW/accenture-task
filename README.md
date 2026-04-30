@@ -105,8 +105,32 @@ Puedes importar la colección para probar los endpoints desde cualquiera de esta
    - Docker Compose
 3. Configura las variables de entorno necesarias para la base de datos si aplica.
 4. Ejecuta la aplicación desde tu IDE o con Gradle.
+5. Accede a la API en `http://localhost:8080/api/`.
 
 Ejemplo:
 
 ```bash
 ./gradlew :app-service:bootRun
+```
+
+6. despliegue con docker-compose
+
+Ejecucion:
+Desde la carpeta deployment:
+
+```bash
+docker compose up --build
+```
+Si deseas reconstruir sin caché (Recomendado):
+```bash
+docker compose build --no-cache
+docker compose up
+```
+
+Servicios levantados
+- PostgreSQL en el puerto 5432
+- Aplicación en el puerto 8080
+  
+Una vez levantado el entorno, puedes probar la API usando la colección de Postman o consumiendo los endpoints directamente desde:
+
+http://localhost:8080
